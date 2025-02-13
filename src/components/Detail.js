@@ -3,21 +3,21 @@ import React, { useEffect, useState } from "react";
 
 const Detail = () => {
   const { id } = useParams();
-console.log(id); // Check if it prints the movie ID correctly
+console.log(id); 
 
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=f43ec82a5f24fe6190891894b7436c7a`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
       );
       const data = await response.json();
       setMovie(data);
     };
   
     fetchMovieDetails();
-  }, [id]); // Re-run when 'id' changes 
+  }, [id]); 
 
 
   if (!movie) return <p>Loading...</p>;

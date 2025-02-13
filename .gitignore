@@ -1,6 +1,6 @@
 # Node.js / NPM
 node_modules/
-.env
+
 
 # Build output
 build/
@@ -35,7 +35,7 @@ yarn-error.log
 .DS_Store
 
 # Environment files (Optional, depending on your setup)
-.env
+
 .env.local
 .env.development.local
 .env.test.local
