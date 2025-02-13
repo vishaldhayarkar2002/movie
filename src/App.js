@@ -1,6 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Movie from "./components/Movie";
 import SearchBar from "./components/SearchBar";
 import { Routes, Route } from "react-router-dom";
 import Detail from "./components/Detail";
