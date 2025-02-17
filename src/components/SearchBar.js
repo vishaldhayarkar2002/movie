@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import Movie from "./Movie";
 import DefaultList from "./DefaultList";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
+import LoginButton from "../component/LoginButton";
+import LogoutButton from "../component/LogoutButton";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   async function searchMovie(query) {
     try {
       const response = await fetch(
@@ -40,18 +43,33 @@ const SearchBar = () => {
   }
 
   return (
-    <div>
-      <form action="" className="form">
-        <h1>Movie App</h1>
+      <div className="container mt-5">
+      <form className="form">
+      <h4 className="text-center mb-4 font-weight-bold ">Movie App</h4>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={handleSearch}
+            value={searchQuery}
+            className="form-control"
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Search"
-          onChange={handleSearch}
-          value={searchQuery}
-          className="search-input"
-        />
+        <div className="d-flex justify-content-between">
+          <button 
+            className="btn btn-primary 
+            mx-5 my-5 px-4"
+            onClick={() => navigate(`/profile`)}
+          >
+            Profile
+          </button>
+          <LoginButton />
+          <LogoutButton />
+        </div>
       </form>
+
+      
       {error && <p>{error}</p>}
 
       {searchQuery ? <Movie movies={movies} /> : <DefaultList />}
