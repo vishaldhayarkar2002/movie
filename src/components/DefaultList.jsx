@@ -35,11 +35,14 @@ const DefaultList = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [fetchMovies]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.scrollHeight - 100
+      ) {
         fetchMovies();
       }
     };
@@ -51,9 +54,16 @@ const DefaultList = () => {
   return (
     <div className="MovieList">
       {movies.map((movie) => (
-        <div key={movie.id} className="movie" onClick={() => navigate(`/movie/${movie.id}`)}>
+        <div
+          key={movie.id}
+          className="movie"
+          onClick={() => navigate(`/movie/${movie.id}`)}
+        >
           <div className="image-container">
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+            />
           </div>
           <h3 className="movie-title">{movie.title}</h3>
         </div>
