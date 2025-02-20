@@ -6,7 +6,7 @@ const LogoutButton = () => {
     const { logout, isAuthenticated } = useAuth0();
     const navigate = useNavigate();
 
-    if (!isAuthenticated) return null; // Hide button if not logged in
+    if (!isAuthenticated) return null; 
 
     return (
         <button

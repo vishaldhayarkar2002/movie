@@ -13,6 +13,11 @@
   max-height: 100%; /* Ensure it takes full height of parent */
 }
 
+.userInfo {
+  font-size: 20px; /* Adjust size as needed */
+  font-weight: bold; /* Optional: Makes text bold */
+}
+
 .MovieList .movie {
   width: 100%;
   border: 1px solid #257b8f;
