@@ -22,13 +22,14 @@ const Profile = () => {
     else if (isAuthenticated && user) {
         return (
             <>
-                <div className="container">
+                <div className="container col-md-6 mx-auto my-5 text-center">
                     <p className="userInfo" id="userInfo1">Name: {user.name}</p>
                     <p className="userInfo" id="userInfo2">Given Name: {user.given_name}</p>
                     <p className="userInfo" id="userInfo3">Family Name: {user.family_name}</p>
                     <p className="userInfo" id="userInfo4">Email: {user.email}</p>
                 </div>
-                <LogoutButton />
+                <div className="container col-md-6 mx-auto my-5 text-center"> <LogoutButton /> </div>
+               
             </>
         );
     }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const DefaultList = () => {
   const [movies, setMovies] = useState([]);
@@ -16,18 +17,21 @@ const DefaultList = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${page}`
+      const res = await axios.get(
+        `https://api.themoviedb.org/3/discover/movie`, 
+        {
+          params: {
+            api_key: process.env.REACT_APP_TMDB_API_KEY,
+            page: page,
+          },
+        }
       );
 
-      if (!res.ok) throw new Error("Failed to load movies");
-
-      const data = await res.json();
-      setMovies((prev) => [...prev, ...data.results]);
-      setHasMore(data.results.length > 0);
+      setMovies((prev) => [...prev, ...res.data.results]);
+      setHasMore(res.data.results.length > 0);
       setPage((prev) => prev + 1);
-    } catch (err) {
-      console.error(err.message);
+    } catch (error) {
+      console.error("Error fetching movies:", error.message);
     } finally {
       setLoading(false);
     }
